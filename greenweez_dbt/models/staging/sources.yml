@@ -43,3 +43,12 @@ sources:
             description: 'Internal logistics cost'
           - name: ship_cost
             description: 'Total shipping cost — stored as VARCHAR. Cast to DOUBLE in staging.'
+
+  - name: raw_marketing
+    description: 'Marketing platform data from Google Ads and Facebook Ads'
+    schema: raw_marketing
+    tables:
+      - name: raw_adwords
+        description: 'Google Ads campaign performance data'
+      - name: raw_facebook
+        description: 'Facebook Ads campaign performance data'
