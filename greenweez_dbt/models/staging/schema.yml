@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_adwords
+    description: 'Cleaned Google Ads campaign data. One row per campaign per day.'
+    columns:
+      - name: date_date
+        description: 'Campaign date'
+        tests:
+          - not_null
+      - name: campaign_name
+        description: 'Campaign name, renamed from camPGN_name'
+        tests:
+          - not_null
+      - name: platform
+        description: 'Platform identifier, always adwords'
+        tests:
+          - not_null
+
+  - name: stg_facebook
+    description: 'Cleaned Facebook Ads campaign data. One row per campaign per day.'
+    columns:
+      - name: date_date
+        description: 'Campaign date'
+        tests:
+          - not_null
+      - name: campaign_name
+        description: 'Campaign name, renamed from camPGN_name'
+        tests:
+          - not_null
+      - name: platform
+        description: 'Platform identifier, always facebook'
+        tests:
+          - not_null
