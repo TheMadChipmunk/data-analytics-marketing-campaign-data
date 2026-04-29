@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: finance_days
+    description: >
+      Daily financial summary for the Greenweez executive dashboard.
+      One row per day. Aggregated from int_orders_operational.
+    columns:
+      - name: date_date
+        description: 'Transaction date (daily grain)'
+      - name: nb_transactions
+        description: 'Count of distinct orders on this day'
+      - name: revenue
+        description: 'Total revenue for the day'
+      - name: average_basket
+        description: 'Average order value = SUM(revenue) / COUNT(DISTINCT orders_id)'
+      - name: purchase_cost
+        description: 'Total product purchase cost for the day'
+      - name: margin
+        description: 'Gross margin = revenue - purchase_cost'
+      - name: operational_margin
+        description: 'Operational margin = margin - ship_cost'
+      - name: margin_percent
+        description: 'Gross margin as percentage of revenue, rounded to 2dp'
+      - name: operational_margin_percent
+        description: 'Operational margin as percentage of revenue, rounded to 2dp'

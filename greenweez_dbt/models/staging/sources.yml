@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: raw
+    description: 'Raw Greenweez data loaded from Parquet files'
+    schema: raw
+    tables:
+      - name: raw_gz_sales
+        description: 'Sales transactions. One row = one product line in an order.'
+        columns:
+          - name: date_date
+            description: 'Transaction date'
+          - name: orders_id
+            description: 'Order identifier — NOT unique (multiple products per order)'
+          - name: pdt_id
+            description: 'Product identifier'
+          - name: revenue
+            description: 'Revenue for this line item'
+          - name: quantity
+            description: 'Quantity ordered'
+
+      - name: raw_gz_product
+        description: 'Product catalogue'
+        columns:
+          - name: products_id
+            description: 'Unique product identifier (PK)'
+            tests:
+              - unique
+              - not_null
+          - name: purchSE_PRICE
+            description: 'Purchase price — mixed case column name, stored as VARCHAR. Cast to DOUBLE in staging.'
+
+      - name: raw_gz_ship
+        description: 'Shipping costs per order'
+        columns:
+          - name: orders_id
+            description: 'Order identifier (FK to raw_gz_sales)'
+          - name: shipping_fee
+            description: 'Shipping fee charged to customer'
+          - name: shipping_fee_1
+            description: 'Alternative shipping fee'
+          - name: logCost
+            description: 'Internal logistics cost'
+          - name: ship_cost
+            description: 'Total shipping cost — stored as VARCHAR. Cast to DOUBLE in staging.'
